@@ -20,6 +20,7 @@
     "dev": "ts-node-dev --respawn --transpileOnly src",
     "lint": "eslint --ext ts,js src/ test/",
     "lint:fix": "npm run lint -- --fix",
+    "semantic-release": "semantic-release",
     "start": "ts-node --transpile-only --pretty src",
     "test": "jest",
     "test:watch": "jest --watchAll"
@@ -33,6 +34,7 @@
     "pino-pretty": "3.6.1"
   },
   "devDependencies": {
+    "@scaleleap/semantic-release-config": "1.1.4",
     "@types/jest": "25.2.1",
     "@types/node": "13.11.0",
     "@types/pino": "5.15.5",
@@ -58,5 +60,9 @@
   "keywords": [],
   "publishConfig": {
     "access": "public"
+  },
+  "release": {
+    "extends": "@scaleleap/semantic-release-config",
+    "branch": "master"
   }
 }
