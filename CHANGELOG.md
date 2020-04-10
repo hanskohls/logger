@@ -3,6 +3,14 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/ScaleLeap/logger/compare/v1.0.0...v1.0.1) (2020-04-10)
+
+
+### Bug Fixes
+
+* bundles @types/pino as a dep ([93bff41](https://github.com/ScaleLeap/logger/commit/93bff4172c8a5962225cfd876caa40d3fcc1b9b5))
+* lock file ([5a998dc](https://github.com/ScaleLeap/logger/commit/5a998dc389db750bcc9c288906442004f708d7ee))
+
 # 1.0.0 (2020-04-10)
 
 
@@ -17,4 +25,3 @@
 ### Features
 
 * initial implementation ([79a0e79](https://github.com/ScaleLeap/logger/commit/79a0e7921248bda44a6548f557828e85a7eb3acb))
-
