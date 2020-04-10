@@ -1,5 +1,9 @@
-import { helloWorld } from '../src/index'
+import { createLogger, log } from '../src/index'
 
-test('should pass', () => {
-  expect(helloWorld()).toBe('hello world')
+test('should export createLogger function', () => {
+  expect(typeof createLogger).toBe('function')
+})
+
+test('should export log object', () => {
+  expect(log).toBeTruthy()
 })

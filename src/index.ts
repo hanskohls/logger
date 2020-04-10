@@ -1,3 +1,2 @@
-export function helloWorld() {
-  return 'hello world'
-}
+export { log } from './log'
+export { createLogger } from './logger'
