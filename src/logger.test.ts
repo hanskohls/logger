@@ -91,7 +91,7 @@ describe('logger', () => {
     })
   })
 
-  describe(setupPinoCaller.name, () => {
+  describe.skip(setupPinoCaller.name, () => {
     it('should create wrap logger and emit caller info', async () => {
       const tmp = await file()
       const logger = setupPinoCaller(pino(pino.destination(tmp.path)))
