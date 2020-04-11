@@ -15,7 +15,7 @@ $ npm i -s @scaleleap/logger
 
 ## Usage
 
-### createLogger(options: Partial<LoggerOptions>?)
+### createLogger(options?: LoggerOptions)
 
 The `createLogger` function returns a pre-configured Pino instance. Optional parameters can be
 passed to amend default configuration.
