@@ -1,2 +1,2 @@
 export { log } from './log'
-export { createLogger } from './logger'
+export { createLogger, Logger } from './logger'

@@ -3,6 +3,8 @@ import pinoDebug from 'pino-debug'
 import deepmerge from 'deepmerge'
 import { LoggerConfig } from './config'
 
+export { Logger } from 'pino'
+
 export function loggerLevel(config: LoggerConfig): LevelWithSilent {
   if (config.LEVEL) {
     return config.LEVEL
