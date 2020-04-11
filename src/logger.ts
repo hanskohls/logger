@@ -28,7 +28,7 @@ export function loggerPrettyPrint(): LoggerOptions['prettyPrint'] {
 }
 
 export function loggerOptions(config: LoggerConfig): LoggerOptions {
-  const isPrettyPrintEnabled = config.isDevelopment && process.stdout.isTTY
+  const isPrettyPrintEnabled = process.stdout.isTTY && (config.isTest || config.isDevelopment)
 
   return {
     enabled: config.ENABLED,
@@ -46,16 +46,21 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
  * * https://github.com/pinojs/pino/blob/master/docs/api.md#pinofinallogger-handler--function--finallogger
  * * https://github.com/pinojs/pino-pretty/issues/37
  */
-export function setupFinalLogger(logger: Logger) {
-  process.on('unhandledRejection', (reason, promise) => {
-    promise
-      .catch((err) => logger.fatal(err, reason, 'Unhandled Rejection'))
-      .finally(() => {
-        process.exit(1)
-      })
-  })
+export function setupUnhandledRejectionHandler(logger: Logger) {
+  return process.on(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignores
+    'unhandledRejection',
 
-  process.on(
+    pino.final(logger, (err, finalLogger) => {
+      finalLogger.error(err, 'Unhandled Rejection')
+      process.exit(1)
+    }),
+  )
+}
+
+export function setupUncaughtExceptionHandler(logger: Logger) {
+  return process.on(
     'uncaughtException',
 
     pino.final(logger, (err, finalLogger) => {
@@ -76,7 +81,8 @@ export function createLogger(options: Partial<LoggerOptions> = {}, config = new 
   // messy to look at in development & testing. In those environments it is easier to look at the
   // default throw up of the NodeJS.
   if (config.isProduction) {
-    setupFinalLogger(logger)
+    setupUnhandledRejectionHandler(logger)
+    setupUncaughtExceptionHandler(logger)
   }
 
   if (logger.isLevelEnabled('trace')) {
