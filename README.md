@@ -53,6 +53,7 @@ You can control logger behavior through a set of environment variables:
  * `LOGGER_NAME`: Sets the logger name.
  * `LOGGER_LEVEL`: Sets the log level that will be emitted. See [Log Levels](#log-levels).
  * `LOGGER_ENABLED`: Enables or disables the logger. Default is `true`.
+ * `LOGGER_CALLER`: Display caller information. Default is `false`.
 
 ## Log Levels
 

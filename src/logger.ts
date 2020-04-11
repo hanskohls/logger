@@ -92,7 +92,7 @@ export function createLogger(options: Partial<LoggerOptions> = {}, config = new 
     setupUncaughtExceptionHandler(logger)
   }
 
-  if (config.isDevelopment) {
+  if (config.CALLER) {
     logger = setupPinoCaller(logger)
   }
 

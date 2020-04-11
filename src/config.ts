@@ -12,4 +12,6 @@ export class LoggerConfig extends BaseConfig {
   public readonly LEVEL = this.get('LEVEL').asEnum([...LOG_LEVELS]) as LevelWithSilent
 
   public readonly ENABLED = this.get('ENABLED').default('true').asBoolStrict()
+
+  public readonly CALLER = this.get('CALLER').default('false').asBoolStrict()
 }
