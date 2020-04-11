@@ -1,5 +1,6 @@
 import pino, { Logger, LevelWithSilent, LoggerOptions } from 'pino'
 import pinoDebug from 'pino-debug'
+import pinoCaller from 'pino-caller'
 import deepmerge from 'deepmerge'
 import { LoggerConfig } from './config'
 
@@ -72,12 +73,16 @@ export function setupUncaughtExceptionHandler(logger: Logger) {
   )
 }
 
+export function setupPinoCaller(logger: Logger): Logger {
+  return pinoCaller(logger)
+}
+
 /**
  * Creates an instance of a logger and returns it.
  */
 export function createLogger(options: Partial<LoggerOptions> = {}, config = new LoggerConfig()): Logger {
   const opts = deepmerge(loggerOptions(config), options)
-  const logger = pino(opts)
+  let logger = pino(opts)
 
   // We only setup global handlers in production, because the output is JSON and it is quite
   // messy to look at in development & testing. In those environments it is easier to look at the
@@ -85,6 +90,10 @@ export function createLogger(options: Partial<LoggerOptions> = {}, config = new 
   if (config.isProduction) {
     setupUnhandledRejectionHandler(logger)
     setupUncaughtExceptionHandler(logger)
+  }
+
+  if (config.isDevelopment) {
+    logger = setupPinoCaller(logger)
   }
 
   if (logger.isLevelEnabled('trace')) {

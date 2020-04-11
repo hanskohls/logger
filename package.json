@@ -23,6 +23,7 @@
     "semantic-release": "semantic-release",
     "start": "ts-node --transpile-only --pretty src",
     "test": "jest",
+    "test:log": "ts-node test/log",
     "test:watch": "jest --watchAll"
   },
   "types": "lib/index.d.ts",
@@ -31,6 +32,7 @@
     "@types/pino": "5.17.0",
     "deepmerge": "4.2.2",
     "pino": "6.1.1",
+    "pino-caller": "3.0.1",
     "pino-debug": "1.3.0",
     "pino-pretty": "3.6.1"
   },

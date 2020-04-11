@@ -1,6 +1,14 @@
+import { readFileSync } from 'fs'
 import pino, { Logger } from 'pino'
 import { file, FileResult } from 'tmp-promise'
-import { loggerLevel, loggerOptions, setupUnhandledRejectionHandler, setupUncaughtExceptionHandler } from './logger'
+import {
+  loggerLevel,
+  loggerOptions,
+  setupUnhandledRejectionHandler,
+  setupUncaughtExceptionHandler,
+  setupPinoCaller,
+  createLogger,
+} from './logger'
 import { LoggerConfig } from './config'
 
 describe('logger', () => {
@@ -80,6 +88,36 @@ describe('logger', () => {
       const processRes = setupUncaughtExceptionHandler(logger)
 
       expect(processRes.listenerCount('uncaughtException')).toBe(1)
+    })
+  })
+
+  describe(setupPinoCaller.name, () => {
+    it('should create wrap logger and emit caller info', async () => {
+      const tmp = await file()
+      const logger = setupPinoCaller(pino(pino.destination(tmp.path)))
+      logger.level = 'info'
+
+      logger.info('foo')
+      logger.flush()
+
+      const logContent = readFileSync(tmp.path)
+      console.log(logContent)
+    })
+  })
+
+  describe(createLogger.name, () => {
+    it('should return a logger object', () => {
+      const logger = createLogger()
+
+      expect(logger).toHaveProperty('info')
+    })
+
+    it('should accept options', () => {
+      const logger = createLogger({ enabled: false })
+
+      expect(logger.isLevelEnabled('error')).toBe(false)
+      expect(logger.isLevelEnabled('fatal')).toBe(false)
+      expect(logger.isLevelEnabled('silent')).toBe(true)
     })
   })
 })

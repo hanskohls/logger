@@ -1,5 +1,10 @@
 {
   "extends": "tsconfigs/nodejs-module",
+  "compilerOptions": {
+    "typeRoots": [
+      "./src/types"
+    ]
+  },
   "include": [
     "src/**/*.ts",
     "test/**/*.ts"
