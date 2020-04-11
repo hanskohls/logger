@@ -2,6 +2,7 @@
   "extends": "tsconfigs/nodejs-module",
   "compilerOptions": {
     "typeRoots": [
+      "node_modules/@types",
       "./src/types"
     ]
   },
