@@ -42,6 +42,20 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
   }
 }
 
+export function finalHandler(logger: Logger) {
+  return pino.final(logger, (err, finalLogger, exitCode: number | null, message: string, ...args: unknown[]) => {
+    if (exitCode !== null) {
+      finalLogger.fatal(err, message, ...args)
+    } else {
+      finalLogger.info(message, ...args)
+    }
+
+    if (exitCode !== null && Number.isInteger(exitCode)) {
+      process.exit(exitCode)
+    }
+  })
+}
+
 /**
  * Final logger can only be used with sync write destinations.
  *
@@ -49,28 +63,28 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
  * * https://github.com/pinojs/pino/blob/master/docs/api.md#pinofinallogger-handler--function--finallogger
  * * https://github.com/pinojs/pino-pretty/issues/37
  */
-export function setupUnhandledRejectionHandler(logger: Logger) {
-  return process.on(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignores
-    'unhandledRejection',
+export function setupUnhandledRejectionHandler(final: ReturnType<typeof finalHandler>) {
+  return process.on('unhandledRejection', (reason) => {
+    const exitCode = 1
 
-    pino.final(logger, (err, finalLogger) => {
-      finalLogger.error(err, 'Unhandled Rejection')
-      process.exit(1)
-    }),
-  )
+    // https://nodejs.org/api/process.html#process_event_unhandledrejection
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33636
+    // Per NodeJS docs, "reason" is <Error> | <any> type.
+    // But in the @types, "reason: is an "unknown" type, so we refine it.
+    if (reason instanceof Error) {
+      return final(reason, exitCode, 'unhandledRejection')
+    } else {
+      return final(null, exitCode, 'unhandledRejection with reason: %s', reason)
+    }
+  })
 }
 
-export function setupUncaughtExceptionHandler(logger: Logger) {
-  return process.on(
-    'uncaughtException',
+export function setupUncaughtExceptionHandler(final: ReturnType<typeof finalHandler>) {
+  return process.on('uncaughtException', (err) => final(err, 1, 'uncaughtException'))
+}
 
-    pino.final(logger, (err, finalLogger) => {
-      finalLogger.fatal(err, 'Uncaught Exception')
-      process.exit(1)
-    }),
-  )
+export function setupExitHandler(final: ReturnType<typeof finalHandler>) {
+  return process.on('exit', (code) => final(null, null, 'exit with code %d.', code))
 }
 
 export function setupPinoCaller(logger: Logger): Logger {
@@ -84,12 +98,16 @@ export function createLogger(options: Partial<LoggerOptions> = {}, config = new 
   const opts = deepmerge(loggerOptions(config), options)
   let logger = pino(opts)
 
+  const finalLoggerHandler = finalHandler(logger)
+
+  setupExitHandler(finalLoggerHandler)
+
   // We only setup global handlers in production, because the output is JSON and it is quite
   // messy to look at in development & testing. In those environments it is easier to look at the
   // default throw up of the NodeJS.
   if (config.isProduction) {
-    setupUnhandledRejectionHandler(logger)
-    setupUncaughtExceptionHandler(logger)
+    setupUnhandledRejectionHandler(finalLoggerHandler)
+    setupUncaughtExceptionHandler(finalLoggerHandler)
   }
 
   if (config.CALLER) {

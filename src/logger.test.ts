@@ -4,6 +4,7 @@ import { file, FileResult } from 'tmp-promise'
 import {
   loggerLevel,
   loggerOptions,
+  finalHandler,
   setupUnhandledRejectionHandler,
   setupUncaughtExceptionHandler,
   setupPinoCaller,
@@ -62,7 +63,7 @@ describe('logger', () => {
     })
   })
 
-  describe(setupUnhandledRejectionHandler.name, () => {
+  describe('final logger', () => {
     let tmp: FileResult
     let logger: Logger
 
@@ -74,20 +75,31 @@ describe('logger', () => {
       logger = pino(pino.destination(tmp.path))
     })
 
-    it('sets unhandledRejection handler', () => {
-      process.removeAllListeners('unhandledRejection')
-
-      const processRes = setupUnhandledRejectionHandler(logger)
-
-      expect(processRes.listenerCount('unhandledRejection')).toBe(1)
+    describe(finalHandler.name, () => {
+      it('returns a handler for final logger', () => {
+        const handler = finalHandler(logger)
+        expect(typeof handler).toBe('function')
+      })
     })
 
-    it('sets uncaughtException handler', () => {
-      process.removeAllListeners('uncaughtException')
+    describe(setupUnhandledRejectionHandler.name, () => {
+      it('sets unhandledRejection handler', () => {
+        process.removeAllListeners('unhandledRejection')
 
-      const processRes = setupUncaughtExceptionHandler(logger)
+        const processRes = setupUnhandledRejectionHandler(finalHandler(logger))
 
-      expect(processRes.listenerCount('uncaughtException')).toBe(1)
+        expect(processRes.listenerCount('unhandledRejection')).toBe(1)
+      })
+    })
+
+    describe(setupUncaughtExceptionHandler.name, () => {
+      it('sets uncaughtException handler', () => {
+        process.removeAllListeners('uncaughtException')
+
+        const processRes = setupUncaughtExceptionHandler(finalHandler(logger))
+
+        expect(processRes.listenerCount('uncaughtException')).toBe(1)
+      })
     })
   })
 
