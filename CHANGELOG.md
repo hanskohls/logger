@@ -3,6 +3,19 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ScaleLeap/logger/compare/v1.2.0...v1.3.0) (2020-04-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/pino to v6 ([406d6be](https://github.com/ScaleLeap/logger/commit/406d6be92970cb5b6395ddd8f107762121215e10)), closes [#6](https://github.com/ScaleLeap/logger/issues/6) [#7](https://github.com/ScaleLeap/logger/issues/7)
+* **deps:** update dependency pino-pretty to v4 ([f70e4ff](https://github.com/ScaleLeap/logger/commit/f70e4ff14b096d1b563064e4a3f27e5d53ca0aa0)), closes [#3](https://github.com/ScaleLeap/logger/issues/3)
+
+
+### Features
+
+* uses sync destination for final logger ([979cc80](https://github.com/ScaleLeap/logger/commit/979cc80909e0f21f26fb150a74cd63837f719158))
+
 # [1.2.0](https://github.com/ScaleLeap/logger/compare/v1.1.1...v1.2.0) (2020-04-13)
 
 
