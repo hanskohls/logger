@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ScaleLeap/logger/compare/v1.3.0...v1.4.0) (2020-04-15)
+
+
+### Features
+
+* adds createTestLogger test helper function ([e11c3b1](https://github.com/ScaleLeap/logger/commit/e11c3b1e62ab08be4a0d5cd68a6fd672949d33dd))
+
 # [1.3.0](https://github.com/ScaleLeap/logger/compare/v1.2.0...v1.3.0) (2020-04-14)
 
 
