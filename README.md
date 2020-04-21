@@ -33,9 +33,9 @@ log.info('Hello world')
 ### createTestLogger(options?: LoggerOptions)
 
 Creates a logger suitable for tests. It does not write anything to screen, and instead writes
-to a [ObjectWritableMock](https://github.com/b4nst/stream-mock).
+to an [ObjectWritableMock](https://github.com/b4nst/stream-mock).
 
-It also attaches two properties to the logger instance:
+Logger instance has two additional properties:
 
  * `writableMock`: `ObjectWritableMock` instance
  * `logLines()`: a method that parses the JSON log to a `LogDescriptor` format
