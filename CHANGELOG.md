@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/ScaleLeap/logger/compare/v1.4.1...v1.4.2) (2020-04-24)
+
+
+### Bug Fixes
+
+* moves @scaleleap/config to peer deps ([7bb29f2](https://github.com/ScaleLeap/logger/commit/7bb29f2b01eeb2e7ec0cb8b4bd033bdeaec7ad48))
+
 ## [1.4.1](https://github.com/ScaleLeap/logger/compare/v1.4.0...v1.4.1) (2020-04-23)
 
 
