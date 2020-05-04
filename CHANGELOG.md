@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/ScaleLeap/logger/compare/v1.4.2...v1.4.3) (2020-05-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pino-caller to v3.0.2 ([07c6d90](https://github.com/ScaleLeap/logger/commit/07c6d905b6d8c796a1445f1522b934e3a2aaf5ed))
+
 ## [1.4.2](https://github.com/ScaleLeap/logger/compare/v1.4.1...v1.4.2) (2020-04-24)
 
 
