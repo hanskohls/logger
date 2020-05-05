@@ -97,6 +97,14 @@ The following defaults are used, based on `NODE_ENV` values:
 * `test` = `error`
 * `production` = `info`
 
+## Heroku Log Parser
+
+Parses Heroku logs and removes the prefix so that we can pipe it:
+
+```sh
+heroku logs | heroku-logs-parser | pino-pretty
+```
+
 ## Contributing
 
 This repository uses [Conventional Commit](https://www.conventionalcommits.org/) style commit messages.
