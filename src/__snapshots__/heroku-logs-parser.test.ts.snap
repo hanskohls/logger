@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HerokuLogsParser should parse lines 1`] = `
+Array [
+  "{\\"level\\":30,\\"time\\":1588670014754,\\"pid\\":115,\\"hostname\\":\\"a8d57749-9c74-4a85-8edc-x\\",\\"msg\\":\\"msg1\\"}",
+  "{\\"level\\":30,\\"time\\":1588670014757,\\"pid\\":115,\\"hostname\\":\\"a8d57749-9c74-4a85-8edc-x\\",\\"msg\\":\\"msg2\\"}",
+  "source=HEROKU_POSTGRESQL addon=postgresql-animate-13221 sample#current_transaction=2836",
+  "{\\"level\\":30,\\"time\\":1588670084548,\\"pid\\":115,\\"hostname\\":\\"a8d57749-9c74-4a85-8edc-x\\",\\"msg\\":\\"msg3\\"}",
+]
+`;
