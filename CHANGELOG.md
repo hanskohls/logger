@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/ScaleLeap/logger/compare/v1.5.0...v1.5.1) (2020-05-05)
+
+
+### Bug Fixes
+
+* path to the binary ([374fa03](https://github.com/ScaleLeap/logger/commit/374fa03e67fe2a1c34f52a97be271909306ab028))
+
 # [1.5.0](https://github.com/ScaleLeap/logger/compare/v1.4.3...v1.5.0) (2020-05-05)
 
 
