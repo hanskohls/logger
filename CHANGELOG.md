@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ScaleLeap/logger/compare/v1.4.3...v1.5.0) (2020-05-05)
+
+
+### Features
+
+* adds heroku-logs-parser cli ([b28da4d](https://github.com/ScaleLeap/logger/commit/b28da4d78261feeab9f57a14972de2b64e6ad75d))
+
 ## [1.4.3](https://github.com/ScaleLeap/logger/compare/v1.4.2...v1.4.3) (2020-05-04)
 
 
