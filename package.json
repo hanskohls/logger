@@ -11,7 +11,7 @@
     "heroku-logs-parser": "lib/bin/heroku-logs-parser.js"
   },
   "homepage": "https://github.com/ScaleLeap/logger/#readme",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "main": "lib/index.js",
   "files": [
     "/lib"
