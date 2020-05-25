@@ -3,6 +3,14 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/ScaleLeap/logger/compare/v1.5.2...v1.5.3) (2020-05-25)
+
+
+### Bug Fixes
+
+* supress pretty warnings suppressFlushSyncWarning ([12d6012](https://github.com/ScaleLeap/logger/commit/12d6012f65e5af606c776bf0cebf9c5c6037270a))
+* **deps:** update dependency pino to v6.3.0 ([be62ed5](https://github.com/ScaleLeap/logger/commit/be62ed5425c5e5568d7e7bc1cbb6c4e5cfe3a415))
+
 ## [1.5.2](https://github.com/ScaleLeap/logger/compare/v1.5.1...v1.5.2) (2020-05-11)
 
 
