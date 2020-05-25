@@ -23,7 +23,7 @@
     "dev": "ts-node-dev --respawn --transpileOnly src",
     "lint": "eslint --ext ts,js src/ test/",
     "lint:fix": "npm run lint -- --fix",
-    "semantic-release": "semantic-release",
+    "semantic-release": "npx @scaleleap/semantic-release-config",
     "start": "ts-node --transpile-only --pretty src",
     "test": "jest",
     "test:log": "ts-node test/log",
@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "@scaleleap/config": "1.6.1",
-    "@scaleleap/semantic-release-config": "1.1.10",
     "@types/jest": "25.2.1",
     "@types/node": "13.13.4",
     "@types/tmp": "0.2.0",
