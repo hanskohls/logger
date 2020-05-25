@@ -7,12 +7,12 @@
     "email": "roman@scaleleap.com",
     "url": "https://www.scaleleap.com/"
   },
-  "bin": {
-    "heroku-logs-parser": "lib/bin/heroku-logs-parser.js"
-  },
   "homepage": "https://github.com/ScaleLeap/logger/#readme",
   "version": "1.5.2",
   "main": "lib/index.js",
+  "bin": {
+    "heroku-logs-parser": "lib/bin/heroku-logs-parser.js"
+  },
   "files": [
     "/lib"
   ],
@@ -39,8 +39,12 @@
     "pino-pretty": "4.0.0",
     "stream-mock": "2.0.5"
   },
+  "peerDependencies": {
+    "@scaleleap/config": "1.6.1"
+  },
   "devDependencies": {
     "@scaleleap/config": "1.6.1",
+    "@scaleleap/utils": "1.7.0",
     "@types/jest": "25.2.1",
     "@types/node": "13.13.4",
     "@types/tmp": "0.2.0",
@@ -52,9 +56,6 @@
     "ts-node": "8.10.1",
     "tsconfigs": "4.0.2",
     "typescript": "3.9.3"
-  },
-  "peerDependencies": {
-    "@scaleleap/config": "1.6.1"
   },
   "keywords": [],
   "publishConfig": {
