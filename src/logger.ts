@@ -28,6 +28,11 @@ export function loggerPrettyPrint(): LoggerOptions['prettyPrint'] {
   return {
     translateTime: true,
     ignore: ['hostname', 'pid'].join(','),
+
+    // TODO: this hasn't been added to types yet, check later if types have been updated.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    suppressFlushSyncWarning: true,
   }
 }
 
