@@ -1,7 +1,8 @@
-import pino, { Logger, LevelWithSilent, LoggerOptions } from 'pino'
-import pinoDebug from 'pino-debug'
-import pinoCaller from 'pino-caller'
 import deepmerge from 'deepmerge'
+import pino, { LevelWithSilent, Logger, LoggerOptions } from 'pino'
+import pinoCaller from 'pino-caller'
+import pinoDebug from 'pino-debug'
+
 import { LoggerConfig } from './config'
 
 export { Logger } from 'pino'
@@ -43,17 +44,21 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
 }
 
 export function finalHandler(logger: Logger) {
-  return pino.final(logger, (err, finalLogger, exitCode: number | null, message: string, ...args: unknown[]) => {
-    if (exitCode !== null) {
-      finalLogger.fatal(err, message, ...args)
-    } else {
-      finalLogger.info(message, ...args)
-    }
+  return pino.final(
+    logger,
+    (error, finalLogger, exitCode: number | null, message: string, ...arguments_: unknown[]) => {
+      if (exitCode !== null) {
+        finalLogger.fatal(error, message, ...arguments_)
+      } else {
+        finalLogger.info(message, ...arguments_)
+      }
 
-    if (exitCode !== null && Number.isInteger(exitCode)) {
-      process.exit(exitCode)
-    }
-  })
+      if (exitCode !== null && Number.isInteger(exitCode)) {
+        // eslint-disable-next-line unicorn/no-process-exit
+        process.exit(exitCode)
+      }
+    },
+  )
 }
 
 /**
@@ -73,17 +78,18 @@ export function setupUnhandledRejectionHandler(final: ReturnType<typeof finalHan
     // But in the @types, "reason: is an "unknown" type, so we refine it.
     if (reason instanceof Error) {
       return final(reason, exitCode, 'unhandledRejection')
-    } else {
-      return final(null, exitCode, 'unhandledRejection with reason: %s', reason)
     }
+    // eslint-disable-next-line unicorn/no-null
+    return final(null, exitCode, 'unhandledRejection with reason: %s', reason)
   })
 }
 
 export function setupUncaughtExceptionHandler(final: ReturnType<typeof finalHandler>) {
-  return process.on('uncaughtException', (err) => final(err, 1, 'uncaughtException'))
+  return process.on('uncaughtException', (error) => final(error, 1, 'uncaughtException'))
 }
 
 export function setupExitHandler(final: ReturnType<typeof finalHandler>) {
+  // eslint-disable-next-line unicorn/no-null
   return process.on('exit', (code) => final(null, null, 'exit with code %d.', code))
 }
 
@@ -94,15 +100,15 @@ export function setupPinoCaller(logger: Logger): Logger {
 /**
  * Creates an instance of a logger and returns it.
  */
-export function createLogger(options: Partial<LoggerOptions> = {}, config = new LoggerConfig()): Logger {
-  const opts = deepmerge(loggerOptions(config), options)
-  let logger = pino(opts)
+export function createLogger(
+  options: Partial<LoggerOptions> = {},
+  config = new LoggerConfig(),
+): Logger {
+  const options_ = deepmerge(loggerOptions(config), options)
+  let logger = pino(options_)
 
-  // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/43882
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  const dest = pino.destination({ sync: true })
-  const finalLoggerHandler = finalHandler(pino(opts, dest))
+  const destination = pino.destination({ sync: true })
+  const finalLoggerHandler = finalHandler(pino(options_, destination))
 
   setupExitHandler(finalLoggerHandler)
 

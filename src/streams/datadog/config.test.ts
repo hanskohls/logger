@@ -1,7 +1,7 @@
-import { DatadogStreamPinoConfig } from './config'
 import { ENV_KEY_PREFIX } from '../../constants'
+import { DatadogStreamPinoConfig } from './config'
 
-describe('Datadog Stream', () => {
+describe('datadog Stream', () => {
   describe(`${DatadogStreamPinoConfig.name}`, () => {
     it('should read an API key from a prefixed variable', () => {
       expect.hasAssertions()
@@ -18,7 +18,7 @@ describe('Datadog Stream', () => {
     it('should require an API key', () => {
       expect.hasAssertions()
 
-      expect(() => new DatadogStreamPinoConfig()).toThrowError()
+      expect(() => new DatadogStreamPinoConfig()).toThrow(/required/)
     })
 
     it('should have all of the properties', () => {

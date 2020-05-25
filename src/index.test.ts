@@ -1,15 +1,22 @@
-import { createLogger, createTestLogger, log } from './index'
+import { createLogger, createTestLogger, log } from '.'
 
 describe('index', () => {
-  test('should export createLogger function', () => {
+  it('should export createLogger function', () => {
+    expect.assertions(1)
+
     expect(typeof createLogger).toBe('function')
   })
 
-  test('should export createTestLogger function', () => {
+  it('should export createTestLogger function', () => {
+    expect.assertions(1)
+
     expect(typeof createTestLogger).toBe('function')
   })
 
-  test('should export log object', () => {
-    expect(log).toBeTruthy()
+  it('should export log object', () => {
+    expect.assertions(2)
+
+    expect(log).not.toBeUndefined()
+    expect(log).toHaveProperty('info')
   })
 })

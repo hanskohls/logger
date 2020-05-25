@@ -24,7 +24,7 @@ describe('log', () => {
   it('should be able to log', () => {
     expect.hasAssertions()
 
-    const level = log.level
+    const { level } = log
     log.level = 'fatal'
 
     expect(log.debug('foo')).toBeUndefined()

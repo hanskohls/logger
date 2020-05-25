@@ -1,4 +1,4 @@
-import pino, { LoggerOptions, LogDescriptor } from 'pino'
+import pino, { LogDescriptor, LoggerOptions } from 'pino'
 import { ObjectWritableMock } from 'stream-mock'
 
 function logLines(lines: string[]) {

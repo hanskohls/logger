@@ -1,4 +1,5 @@
 import { Logger } from 'pino'
+
 import { createLogger } from './logger'
 
 let LOGGER: Logger
@@ -29,11 +30,11 @@ export const log = new Proxy({} as Logger, {
     // @ts-ignore
     return LOGGER[key]
   },
-  set: (target, key, value) => {
+  set: (target, key: keyof Logger, value) => {
     init()
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    return (LOGGER[key] = value)
+    LOGGER[key] = value
+
+    return true
   },
 })

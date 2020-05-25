@@ -28,5 +28,5 @@ declare module 'pino-debug' {
     map?: Record<string, Level>
   }
 
-  export default function pinoDebug(logger: Logger, opts: PinoDebugOptions): void
+  export default function pinoDebug(logger: Logger, options: PinoDebugOptions): void
 }

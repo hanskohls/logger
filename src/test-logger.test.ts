@@ -1,6 +1,6 @@
 import { createTestLogger } from './test-logger'
 
-describe(createTestLogger.name, () => {
+describe(`${createTestLogger.name}`, () => {
   it('should return a logger without any params', () => {
     expect.assertions(1)
 
@@ -21,13 +21,13 @@ describe(createTestLogger.name, () => {
   it('mock should intercept logger calls', () => {
     expect.assertions(2)
 
-    const msg = 'hello world'
+    const message = 'hello world'
     const logger = createTestLogger()
 
-    logger.info(msg)
+    logger.info(message)
     const logLines = logger.logLines()
 
-    expect(logLines.length).toBe(1)
-    expect(logLines[0].msg).toBe(msg)
+    expect(logLines).toHaveLength(1)
+    expect(logLines[0].msg).toBe(message)
   })
 })
