@@ -7,12 +7,12 @@
     "email": "roman@scaleleap.com",
     "url": "https://www.scaleleap.com/"
   },
-  "bin": {
-    "heroku-logs-parser": "lib/bin/heroku-logs-parser.js"
-  },
   "homepage": "https://github.com/ScaleLeap/logger/#readme",
   "version": "1.5.2",
   "main": "lib/index.js",
+  "bin": {
+    "heroku-logs-parser": "lib/bin/heroku-logs-parser.js"
+  },
   "files": [
     "/lib"
   ],
@@ -23,7 +23,7 @@
     "dev": "ts-node-dev --respawn --transpileOnly src",
     "lint": "eslint --ext ts,js src/ test/",
     "lint:fix": "npm run lint -- --fix",
-    "semantic-release": "semantic-release",
+    "semantic-release": "npx @scaleleap/semantic-release-config",
     "start": "ts-node --transpile-only --pretty src",
     "test": "jest",
     "test:log": "ts-node test/log",
@@ -39,33 +39,23 @@
     "pino-pretty": "4.0.0",
     "stream-mock": "2.0.5"
   },
+  "peerDependencies": {
+    "@scaleleap/config": "1.6.1"
+  },
   "devDependencies": {
     "@scaleleap/config": "1.6.1",
-    "@scaleleap/semantic-release-config": "1.1.10",
+    "@scaleleap/utils": "1.7.0",
     "@types/jest": "25.2.1",
     "@types/node": "13.13.4",
     "@types/tmp": "0.2.0",
-    "@typescript-eslint/eslint-plugin": "2.30.0",
-    "@typescript-eslint/parser": "2.30.0",
     "danger": "10.2.0",
-    "eslint": "7.1.0",
-    "eslint-config-prettier": "6.11.0",
-    "eslint-import-resolver-typescript": "2.0.0",
-    "eslint-plugin-import": "2.20.2",
-    "eslint-plugin-prettier": "3.1.3",
-    "husky": "4.2.5",
     "jest": "25.5.3",
-    "post-npm-install": "2.0.0",
-    "prettier": "2.0.5",
     "rimraf": "3.0.2",
     "tmp-promise": "3.0.2",
     "ts-jest": "25.4.0",
     "ts-node": "8.10.1",
     "tsconfigs": "4.0.2",
     "typescript": "3.9.3"
-  },
-  "peerDependencies": {
-    "@scaleleap/config": "1.6.1"
   },
   "keywords": [],
   "publishConfig": {

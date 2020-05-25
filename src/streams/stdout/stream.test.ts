@@ -1,9 +1,9 @@
 import { createWriteStream } from './stream'
 
-describe('Datadog Stream', () => {
-  describe(createWriteStream.name, () => {
+describe('datadog Stream', () => {
+  describe(`${createWriteStream.name}`, () => {
     it('should create a stream', () => {
-      expect.hasAssertions()
+      expect.assertions(1)
 
       const stream = createWriteStream()
 

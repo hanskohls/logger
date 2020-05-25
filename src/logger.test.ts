@@ -1,130 +1,146 @@
-import { readFileSync } from 'fs'
 import pino, { Logger } from 'pino'
 import { file, FileResult } from 'tmp-promise'
+
+import { LoggerConfig } from './config'
 import {
+  createLogger,
+  finalHandler,
   loggerLevel,
   loggerOptions,
-  finalHandler,
-  setupUnhandledRejectionHandler,
   setupUncaughtExceptionHandler,
-  setupPinoCaller,
-  createLogger,
+  setupUnhandledRejectionHandler,
 } from './logger'
-import { LoggerConfig } from './config'
 
 describe('logger', () => {
-  describe(loggerLevel.name, () => {
+  describe(`${loggerLevel.name}`, () => {
     it('should return debug in development environment', () => {
+      expect.assertions(1)
+
       expect(loggerLevel(new LoggerConfig({ NODE_ENV: 'development' }))).toBe('debug')
     })
 
     it('should return error in test environment', () => {
+      expect.assertions(1)
+
       expect(loggerLevel(new LoggerConfig({ NODE_ENV: 'test' }))).toBe('error')
     })
 
     it('should return info in production environment', () => {
+      expect.assertions(1)
+
       expect(loggerLevel(new LoggerConfig({ NODE_ENV: 'production' }))).toBe('info')
     })
 
     it('should return overrideable value with LOGGER_LEVEL', () => {
+      expect.assertions(1)
+
       expect(loggerLevel(new LoggerConfig({ LOGGER_LEVEL: 'fatal' }))).toBe('fatal')
     })
   })
 
-  describe(loggerOptions.name, () => {
+  describe(`${loggerOptions.name}`, () => {
     it('should return a pino config object', () => {
-      const opts = loggerOptions(new LoggerConfig())
-      expect(opts).toHaveProperty('level')
+      expect.assertions(1)
+
+      const options = loggerOptions(new LoggerConfig())
+
+      expect(options).toHaveProperty('level')
     })
 
     it('should have pretty print enabled in development', () => {
+      expect.assertions(1)
+
       const { isTTY } = process.stdout
       process.stdout.isTTY = true
 
-      const opts = loggerOptions(new LoggerConfig({ NODE_ENV: 'development' }))
-      expect(opts.prettyPrint).not.toBe(false)
+      const options = loggerOptions(new LoggerConfig({ NODE_ENV: 'development' }))
+
+      expect(options.prettyPrint).not.toBe(false)
 
       process.stdout.isTTY = isTTY
     })
 
     it('should have pretty print enabled in test', () => {
+      expect.assertions(1)
+
       const { isTTY } = process.stdout
       process.stdout.isTTY = true
 
-      const opts = loggerOptions(new LoggerConfig({ NODE_ENV: 'test' }))
-      expect(opts.prettyPrint).not.toBe(false)
+      const options = loggerOptions(new LoggerConfig({ NODE_ENV: 'test' }))
+
+      expect(options.prettyPrint).not.toBe(false)
 
       process.stdout.isTTY = isTTY
     })
 
     it('should have pretty print disabled in production', () => {
-      const opts = loggerOptions(new LoggerConfig({ NODE_ENV: 'production' }))
-      expect(opts.prettyPrint).toBe(false)
+      expect.assertions(1)
+
+      const options = loggerOptions(new LoggerConfig({ NODE_ENV: 'production' }))
+
+      expect(options.prettyPrint).toBe(false)
     })
   })
 
   describe('final logger', () => {
-    let tmp: FileResult
+    let temporary: FileResult
     let logger: Logger
 
     beforeEach(async () => {
       // Final logging requires streams with file descriptors, but jest
       // seems to be messing with stdout file descriptor. So we create a logging destination to
       // file instead.
-      tmp = await file()
-      logger = pino(pino.destination(tmp.path))
+      temporary = await file()
+      logger = pino(pino.destination(temporary.path))
     })
 
-    describe(finalHandler.name, () => {
+    describe(`${finalHandler.name}`, () => {
       it('returns a handler for final logger', () => {
+        expect.assertions(1)
+
         const handler = finalHandler(logger)
+
         expect(typeof handler).toBe('function')
       })
     })
 
-    describe(setupUnhandledRejectionHandler.name, () => {
+    describe(`${setupUnhandledRejectionHandler.name}`, () => {
       it('sets unhandledRejection handler', () => {
+        expect.assertions(1)
+
         process.removeAllListeners('unhandledRejection')
 
-        const processRes = setupUnhandledRejectionHandler(finalHandler(logger))
+        const processResponse = setupUnhandledRejectionHandler(finalHandler(logger))
 
-        expect(processRes.listenerCount('unhandledRejection')).toBe(1)
+        expect(processResponse.listenerCount('unhandledRejection')).toBe(1)
       })
     })
 
-    describe(setupUncaughtExceptionHandler.name, () => {
+    describe(`${setupUncaughtExceptionHandler.name}`, () => {
       it('sets uncaughtException handler', () => {
+        expect.assertions(1)
+
         process.removeAllListeners('uncaughtException')
 
-        const processRes = setupUncaughtExceptionHandler(finalHandler(logger))
+        const processResponse = setupUncaughtExceptionHandler(finalHandler(logger))
 
-        expect(processRes.listenerCount('uncaughtException')).toBe(1)
+        expect(processResponse.listenerCount('uncaughtException')).toBe(1)
       })
     })
   })
 
-  describe.skip(setupPinoCaller.name, () => {
-    it('should create wrap logger and emit caller info', async () => {
-      const tmp = await file()
-      const logger = setupPinoCaller(pino(pino.destination(tmp.path)))
-      logger.level = 'info'
-
-      logger.info('foo')
-      logger.flush()
-
-      const logContent = readFileSync(tmp.path)
-      console.log(logContent)
-    })
-  })
-
-  describe(createLogger.name, () => {
+  describe(`${createLogger.name}`, () => {
     it('should return a logger object', () => {
+      expect.assertions(1)
+
       const logger = createLogger()
 
       expect(logger).toHaveProperty('info')
     })
 
     it('should accept options', () => {
+      expect.assertions(3)
+
       const logger = createLogger({ enabled: false })
 
       expect(logger.isLevelEnabled('error')).toBe(false)

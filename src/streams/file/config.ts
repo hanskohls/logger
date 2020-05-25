@@ -1,4 +1,5 @@
 import { BaseConfig } from '@scaleleap/config'
+
 import { ENV_KEY_PREFIX } from '../../constants'
 
 export class FileStreamPinoConfig extends BaseConfig {
