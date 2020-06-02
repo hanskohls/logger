@@ -1,7 +1,6 @@
 import deepmerge from 'deepmerge'
 import pino, { LevelWithSilent, Logger, LoggerOptions } from 'pino'
 import pinoCaller from 'pino-caller'
-import pinoDebug from 'pino-debug'
 
 import { LoggerConfig } from './config'
 
@@ -127,17 +126,6 @@ export function createLogger(
 
   if (config.CALLER) {
     logger = setupPinoCaller(logger)
-  }
-
-  if (logger.isLevelEnabled('trace')) {
-    // TODO: pinoDebug can only be called once
-    pinoDebug(logger, {
-      auto: true,
-      map: {
-        'scaleleap:*': 'debug',
-        '*': 'trace',
-      },
-    })
   }
 
   return logger
