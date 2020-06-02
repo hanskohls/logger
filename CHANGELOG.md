@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ScaleLeap/logger/compare/v1.5.4...v1.6.0) (2020-06-02)
+
+
+### Features
+
+* removes pino-debug ([5798b19](https://github.com/ScaleLeap/logger/commit/5798b1953a0ff42584f1945fb3a6ba8f84ce0039))
+
 ## [1.5.4](https://github.com/ScaleLeap/logger/compare/v1.5.3...v1.5.4) (2020-06-01)
 
 
