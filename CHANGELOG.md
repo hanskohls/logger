@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/ScaleLeap/logger/compare/v1.6.1...v1.6.2) (2020-06-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/pino to v6.3.0 ([343a534](https://github.com/ScaleLeap/logger/commit/343a534b1de06d15e957643d87724f98d72e56ac))
+
 ## [1.6.1](https://github.com/ScaleLeap/logger/compare/v1.6.0...v1.6.1) (2020-06-02)
 
 
