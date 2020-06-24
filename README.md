@@ -105,6 +105,20 @@ Parses Heroku logs and removes the prefix so that we can pipe it:
 heroku logs | heroku-logs-parser | pino-pretty
 ```
 
+## AWS Lambda environment
+
+Automatically adds the following environment variables to `base`, when running in the AWS Lambda
+environment:
+
+```ts
+{
+  memorySize: process.env.AWS_LAMBDA_FUNCTION_MEMORY_SIZE,
+  region: process.env.AWS_REGION,
+  runtime: process.env.AWS_EXECUTION_ENV,
+  version: process.env.AWS_LAMBDA_FUNCTION_VERSION,
+}
+```
+
 ## Contributing
 
 This repository uses [Conventional Commit](https://www.conventionalcommits.org/) style commit messages.
