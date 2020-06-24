@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ScaleLeap/logger/compare/v1.6.2...v1.7.0) (2020-06-24)
+
+
+### Features
+
+* adds AWS Lambda environment variables to log base ([ac75f69](https://github.com/ScaleLeap/logger/commit/ac75f6990b239b6c2d1250094c968a94add5de5b))
+
 ## [1.6.2](https://github.com/ScaleLeap/logger/compare/v1.6.1...v1.6.2) (2020-06-15)
 
 
