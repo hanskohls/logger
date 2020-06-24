@@ -38,12 +38,24 @@ export function loggerPrettyPrint(): LoggerOptions['prettyPrint'] {
 export function loggerOptions(config: LoggerConfig): LoggerOptions {
   const isPrettyPrintEnabled = process.stdout.isTTY && (config.isTest || config.isDevelopment)
 
+  // if we are in an AWS Lambda environment
+  let base: Record<string, string | undefined> = {}
+  if (process.env.AWS_EXECUTION_ENV) {
+    base = {
+      memorySize: process.env.AWS_LAMBDA_FUNCTION_MEMORY_SIZE,
+      region: process.env.AWS_REGION,
+      runtime: process.env.AWS_EXECUTION_ENV,
+      version: process.env.AWS_LAMBDA_FUNCTION_VERSION,
+    }
+  }
+
   return {
     enabled: config.ENABLED,
     name: config.NAME,
     level: loggerLevel(config),
     prettyPrint: isPrettyPrintEnabled ? loggerPrettyPrint() : false,
     serializers: pino.stdSerializers,
+    base,
   }
 }
 
