@@ -38,14 +38,26 @@ export function loggerPrettyPrint(): LoggerOptions['prettyPrint'] {
 export function loggerOptions(config: LoggerConfig): LoggerOptions {
   const isPrettyPrintEnabled = process.stdout.isTTY && (config.isTest || config.isDevelopment)
 
+  let base: Record<string, string | number | undefined> = {}
+
   // if we are in an AWS Lambda environment
-  let base: Record<string, string | undefined> = {}
   if (process.env.AWS_EXECUTION_ENV) {
     base = {
       memorySize: process.env.AWS_LAMBDA_FUNCTION_MEMORY_SIZE,
       region: process.env.AWS_REGION,
       runtime: process.env.AWS_EXECUTION_ENV,
       version: process.env.AWS_LAMBDA_FUNCTION_VERSION,
+    }
+  }
+
+  // if we are in a Heroku environment
+  // Usually has the following set: NODE_HOME=/app/.heroku/node
+  if (process.env.NODE_HOME && process.env.NODE_HOME.includes('.heroku')) {
+    base = {
+      DYNO: process.env.DYNO,
+      MEMORY_AVAILABLE: Number(process.env.MEMORY_AVAILABLE),
+      WEB_MEMORY: Number(process.env.WEB_MEMORY),
+      WEB_CONCURRENCY: Number(process.env.WEB_CONCURRENCY),
     }
   }
 
