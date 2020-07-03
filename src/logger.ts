@@ -54,10 +54,10 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
   // Usually has the following set: NODE_HOME=/app/.heroku/node
   if (process.env.NODE_HOME && process.env.NODE_HOME.includes('.heroku')) {
     base = {
-      DYNO: process.env.DYNO,
-      MEMORY_AVAILABLE: Number(process.env.MEMORY_AVAILABLE),
-      WEB_MEMORY: Number(process.env.WEB_MEMORY),
-      WEB_CONCURRENCY: Number(process.env.WEB_CONCURRENCY),
+      dyno: process.env.DYNO,
+      memoryAvailable: Number(process.env.MEMORY_AVAILABLE),
+      webMemory: Number(process.env.WEB_MEMORY),
+      webConcurrency: Number(process.env.WEB_CONCURRENCY),
     }
   }
 
