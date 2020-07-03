@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ScaleLeap/logger/compare/v1.7.0...v1.8.0) (2020-07-03)
+
+
+### Features
+
+* adds Heroku environment variables ([787b09e](https://github.com/ScaleLeap/logger/commit/787b09ed9ed3ebd7a0d6f58cb79a27c4a9887e86))
+
 # [1.7.0](https://github.com/ScaleLeap/logger/compare/v1.6.2...v1.7.0) (2020-06-24)
 
 
