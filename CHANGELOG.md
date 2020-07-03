@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/ScaleLeap/logger/compare/v1.8.0...v1.8.1) (2020-07-03)
+
+
+### Bug Fixes
+
+* rename Heroku environment names to camelCase ([9258fdb](https://github.com/ScaleLeap/logger/commit/9258fdb0f0b4271d2a847283be48e84ad4d5fc51))
+
 # [1.8.0](https://github.com/ScaleLeap/logger/compare/v1.7.0...v1.8.0) (2020-07-03)
 
 
