@@ -43,7 +43,7 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
   // if we are in an AWS Lambda environment
   if (process.env.AWS_EXECUTION_ENV) {
     base = {
-      memorySize: process.env.AWS_LAMBDA_FUNCTION_MEMORY_SIZE,
+      memorySize: Number(process.env.AWS_LAMBDA_FUNCTION_MEMORY_SIZE),
       region: process.env.AWS_REGION,
       runtime: process.env.AWS_EXECUTION_ENV,
       version: process.env.AWS_LAMBDA_FUNCTION_VERSION,
