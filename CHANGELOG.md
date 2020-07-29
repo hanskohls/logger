@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.7](https://github.com/ScaleLeap/logger/compare/v1.8.6...v1.8.7) (2020-07-29)
+
+
+### Bug Fixes
+
+* makes lambda memorySize a number ([7b39745](https://github.com/ScaleLeap/logger/commit/7b397455998460adcc68859ec710ebe39fbb18ab))
+
 ## [1.8.6](https://github.com/ScaleLeap/logger/compare/v1.8.5...v1.8.6) (2020-07-21)
 
 
