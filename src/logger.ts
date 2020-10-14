@@ -1,6 +1,5 @@
 import deepmerge from 'deepmerge'
 import pino, { LevelWithSilent, Logger, LoggerOptions } from 'pino'
-import pinoCaller from 'pino-caller'
 
 import { LoggerConfig } from './config'
 
@@ -121,10 +120,6 @@ export function setupExitHandler(final: ReturnType<typeof finalHandler>) {
   return process.on('exit', (code) => final(null, null, 'exit with code %d.', code))
 }
 
-export function setupPinoCaller(logger: Logger): Logger {
-  return pinoCaller(logger)
-}
-
 /**
  * Creates an instance of a logger and returns it.
  */
@@ -133,7 +128,7 @@ export function createLogger(
   config = new LoggerConfig(),
 ): Logger {
   const options_ = deepmerge(loggerOptions(config), options)
-  let logger = pino(options_)
+  const logger = pino(options_)
 
   const destination = pino.destination({ sync: true })
   const finalLoggerHandler = finalHandler(pino(options_, destination))
@@ -146,10 +141,6 @@ export function createLogger(
   if (config.isProduction) {
     setupUnhandledRejectionHandler(finalLoggerHandler)
     setupUncaughtExceptionHandler(finalLoggerHandler)
-  }
-
-  if (config.CALLER) {
-    logger = setupPinoCaller(logger)
   }
 
   return logger

@@ -1,7 +1,4 @@
-![](https://raw.githubusercontent.com/ScaleLeap/logger/master/docs/assets/header.png)
-
-📦 @scaleleap/logger
-===================================
+# 📦 @scaleleap/logger
 
 A universal logger for Scale Leap applications based on [Pino](https://github.com/pinojs/pino).
 
@@ -10,7 +7,7 @@ A universal logger for Scale Leap applications based on [Pino](https://github.co
 ## Download & Installation
 
 ```sh
-$ npm i -s @scaleleap/logger
+npm i -s @scaleleap/logger
 ```
 
 ## Usage
@@ -37,8 +34,8 @@ to an [ObjectWritableMock](https://github.com/b4nst/stream-mock).
 
 Logger instance has two additional properties:
 
- * `writableMock`: `ObjectWritableMock` instance
- * `logLines()`: a method that parses the JSON log to a `LogDescriptor` format
+* `writableMock`: `ObjectWritableMock` instance
+* `logLines()`: a method that parses the JSON log to a `LogDescriptor` format
 
 Example:
 
@@ -74,14 +71,15 @@ log.info('Hello world')
 
 You can control logger behavior through a set of environment variables:
 
- * `LOGGER_NAME`: Sets the logger name.
- * `LOGGER_LEVEL`: Sets the log level that will be emitted. See [Log Levels](#log-levels).
- * `LOGGER_ENABLED`: Enables or disables the logger. Default is `true`.
- * `LOGGER_CALLER`: Display caller information. Default is `false`.
+* `LOGGER_NAME`: Sets the logger name.
+* `LOGGER_LEVEL`: Sets the log level that will be emitted. See [Log Levels](#log-levels).
+* `LOGGER_ENABLED`: Enables or disables the logger. Default is `true`.
 
 ## Log Levels
 
-The following [log levels](https://github.com/pinojs/pino/blob/master/docs/api.md#loggerlevel-string-gettersetter) are supported:
+The following
+[log levels](https://github.com/pinojs/pino/blob/master/docs/api.md#loggerlevel-string-gettersetter)
+are supported:
 
 * `trace`
 * `debug`
@@ -121,7 +119,8 @@ environment:
 
 ## Contributing
 
-This repository uses [Conventional Commit](https://www.conventionalcommits.org/) style commit messages.
+This repository uses [Conventional Commit](https://www.conventionalcommits.org/) style commit
+messages.
 
 ## Authors or Acknowledgments
 
