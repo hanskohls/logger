@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.18](https://github.com/ScaleLeap/logger/compare/v1.8.17...v1.8.18) (2020-10-14)
+
+
+### Bug Fixes
+
+* removes pino-caller ([2d52d01](https://github.com/ScaleLeap/logger/commit/2d52d01fa61e39bc19cc29b2fa0096e8b5a50e18))
+
 ## [1.8.17](https://github.com/ScaleLeap/logger/compare/v1.8.16...v1.8.17) (2020-10-06)
 
 
