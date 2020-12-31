@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.22](https://github.com/ScaleLeap/logger/compare/v1.8.21...v1.8.22) (2020-12-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pino to v6.9.0 ([d68e44b](https://github.com/ScaleLeap/logger/commit/d68e44b34bfc109a1e1891a7fb3fd2e22c907a0f))
+
 ## [1.8.21](https://github.com/ScaleLeap/logger/compare/v1.8.20...v1.8.21) (2020-12-11)
 
 
