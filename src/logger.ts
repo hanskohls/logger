@@ -28,7 +28,7 @@ export function loggerPrettyPrint(): LoggerOptions['prettyPrint'] {
     ignore: ['hostname', 'pid'].join(','),
 
     // TODO: this hasn't been added to types yet, check later if types have been updated.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     suppressFlushSyncWarning: true,
   }
@@ -70,6 +70,7 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function finalHandler(logger: Logger) {
   return pino.final(
     logger,
@@ -95,8 +96,8 @@ export function finalHandler(logger: Logger) {
  * * https://github.com/pinojs/pino/blob/master/docs/api.md#pinofinallogger-handler--function--finallogger
  * * https://github.com/pinojs/pino-pretty/issues/37
  */
-export function setupUnhandledRejectionHandler(final: ReturnType<typeof finalHandler>) {
-  return process.on('unhandledRejection', (reason) => {
+export function setupUnhandledRejectionHandler(final: ReturnType<typeof finalHandler>): void {
+  process.on('unhandledRejection', (reason) => {
     const exitCode = 1
 
     // https://nodejs.org/api/process.html#process_event_unhandledrejection
@@ -111,13 +112,13 @@ export function setupUnhandledRejectionHandler(final: ReturnType<typeof finalHan
   })
 }
 
-export function setupUncaughtExceptionHandler(final: ReturnType<typeof finalHandler>) {
-  return process.on('uncaughtException', (error) => final(error, 1, 'uncaughtException'))
+export function setupUncaughtExceptionHandler(final: ReturnType<typeof finalHandler>): void {
+  process.on('uncaughtException', (error) => final(error, 1, 'uncaughtException'))
 }
 
-export function setupExitHandler(final: ReturnType<typeof finalHandler>) {
+export function setupExitHandler(final: ReturnType<typeof finalHandler>): void {
   // eslint-disable-next-line unicorn/no-null
-  return process.on('exit', (code) => final(null, null, 'exit with code %d.', code))
+  process.on('exit', (code) => final(null, null, 'exit with code %d.', code))
 }
 
 /**

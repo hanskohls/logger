@@ -26,7 +26,7 @@ export const log = new Proxy({} as Logger, {
   get: (target, key) => {
     init()
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return LOGGER[key]
   },

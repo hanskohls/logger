@@ -110,9 +110,9 @@ describe('logger', () => {
 
         process.removeAllListeners('unhandledRejection')
 
-        const processResponse = setupUnhandledRejectionHandler(finalHandler(logger))
+        setupUnhandledRejectionHandler(finalHandler(logger))
 
-        expect(processResponse.listenerCount('unhandledRejection')).toBe(1)
+        expect(process.listenerCount('unhandledRejection')).toBe(1)
       })
     })
 
@@ -122,9 +122,9 @@ describe('logger', () => {
 
         process.removeAllListeners('uncaughtException')
 
-        const processResponse = setupUncaughtExceptionHandler(finalHandler(logger))
+        setupUncaughtExceptionHandler(finalHandler(logger))
 
-        expect(processResponse.listenerCount('uncaughtException')).toBe(1)
+        expect(process.listenerCount('uncaughtException')).toBe(1)
       })
     })
   })
