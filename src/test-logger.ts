@@ -5,6 +5,7 @@ function logLines(lines: string[]) {
   return lines.map<LogDescriptor>((line) => JSON.parse(line))
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createTestLogger(options: Partial<LoggerOptions> = {}) {
   const writableMock = new ObjectWritableMock()
 
