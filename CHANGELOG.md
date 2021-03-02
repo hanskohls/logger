@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.30](https://github.com/ScaleLeap/logger/compare/v1.8.29...v1.8.30) (2021-03-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pino-pretty to v4.6.0 ([1fec006](https://github.com/ScaleLeap/logger/commit/1fec006a5b6a739b333ae97dd2bc814fde345c24))
+
 ## [1.8.29](https://github.com/ScaleLeap/logger/compare/v1.8.28...v1.8.29) (2021-02-18)
 
 
