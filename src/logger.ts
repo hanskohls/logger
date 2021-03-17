@@ -65,7 +65,15 @@ export function loggerOptions(config: LoggerConfig): LoggerOptions {
     name: config.NAME,
     level: loggerLevel(config),
     prettyPrint: isPrettyPrintEnabled ? loggerPrettyPrint() : false,
-    serializers: pino.stdSerializers,
+    serializers: {
+      ...pino.stdSerializers,
+
+      /**
+       * Adds serialization for the "error" prop too, because our ESLint rules prohibit the use
+       * of "err" shorthand.
+       */
+      error: pino.stdSerializers.err,
+    },
     base,
   }
 }
