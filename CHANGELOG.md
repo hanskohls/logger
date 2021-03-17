@@ -3,6 +3,13 @@
           All notable changes to this project will be documented in this file.
           See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ScaleLeap/logger/compare/v1.8.33...v1.9.0) (2021-03-17)
+
+
+### Features
+
+* enables error property serialization as error ([f1f285f](https://github.com/ScaleLeap/logger/commit/f1f285f9e9c608b21f3272d39a567af1423dab05))
+
 ## [1.8.33](https://github.com/ScaleLeap/logger/compare/v1.8.32...v1.8.33) (2021-03-12)
 
 
